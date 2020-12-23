@@ -1,0 +1,8 @@
+name = "test"
+version = "@@VSN@@"
+description = ""
+
+
+[build-system]
+requires = ["wheel"]
+build-backend = "something.generic"

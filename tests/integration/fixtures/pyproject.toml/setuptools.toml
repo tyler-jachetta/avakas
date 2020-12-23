@@ -1,0 +1,11 @@
+[metadata]
+name = meowpkg
+version = @@VSN@@
+description = a package that meows
+
+[options]
+packages = find:
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
