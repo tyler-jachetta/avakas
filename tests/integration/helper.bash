@@ -132,6 +132,15 @@ ansible_version() {
     tag_repo "$REPO" "$VSN"
 }
 
+template_version_file() {
+    # Output to stdout the contents of a templated file with the version filled
+    # in.
+    local TEMPLATE_NAME="$1"
+    local VERSION="$2"
+
+    sed -e "s/@@VSN@@/${VERSION}/" < "${BATS_TEST_DIRNAME}/fixtures/${TEMPLATE_NAME}"
+}
+
 cookbook_version() {
     local REPO="$1"
     local VSN="$2"
@@ -167,6 +176,11 @@ template_skeleton() {
         ansible_version "$REPO" "$VSN"
     elif [ "$FLAVOR" == "cookbook" ] ; then
         cookbook_version "$REPO" "$VSN"
+    # This \/ is a pretty dumb case, won't do any file not in repo top level,
+    # unless you use the single target multiple sources method
+    elif [ -f "${BATS_TEST_DIRNAME}/fixtures/${FLAVOR}" ] ; then
+        TARGET=$([[ $(dirname "${FLAVOR}" != "." ) ]] && dirname "${FLAVOR}" || "${FLAVOR}")
+        echo -n $(template_version_file "${FLAVOR}" "${VSN}") > $TARGET
     else
         echo "Invalid skeleton!"
         exit 1
