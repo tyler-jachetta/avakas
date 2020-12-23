@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "avakas"
+version = "0.10.0"
+description = "This script provides a simple interface around viewing and manipulating project version metadata. It may be used to either bump, set, or view the version information for the project in a given directory. It is written with [semantic versioning](http://semver.org/) in mind."
+authors = ["Jonathan Freedman"]
+license = "MIT"
+
+packages = [
+    { include = "avakas" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+toml = "^0.10.2"
+
+[tool.poetry.dev-dependencies]
+loremipsum = "^1.0.5"
+pep8 = "^1.7.1"
+coverage = "^5.3"
+nose = "^1.3.7"
+pylint = "^2.6.0"
+toml-cli = "^0.1.3"
+
+[build-system]
+
+# so below
+
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
