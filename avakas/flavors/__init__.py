@@ -7,6 +7,7 @@ from .ansible import AvakasAnsibleProject
 from .chef import AvakasChefProject
 from .erlang import AvakasErlangProject
 from .node import AvakasNodeProject
+from .python_pep621 import AvakasPEP621Project
 
 __all__ = [
     'AvakasProject',
@@ -15,4 +16,5 @@ __all__ = [
     'AvakasChefProject',
     'AvakasErlangProject',
     'AvakasNodeProject',
+    'AvakasPEP621Project'
 ]

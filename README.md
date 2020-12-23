@@ -20,6 +20,7 @@ The avakas tool supports the following types of version files
 * NodeJS `package.json`
 * Erlang/OTP and rebar `foo.app.src`
 * Chef Cookbook `metadata.rb`
+* Python PEP 621 `pyproject.toml`
 * Plain ol' `version` file
 
 # Operations
