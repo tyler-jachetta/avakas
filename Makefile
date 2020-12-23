@@ -16,7 +16,9 @@ install:
 package:
 	python setup.py sdist
 
-test: testenv install
+test: testenv
+	$(CI_ENV)python setup.py bdist_wheel
+	$(CI_ENV)pip install dist/*.whl
 	$(CI_ENV)coverage erase
 	$(CI_ENV)pep8 "avakas"
 	$(CI_ENV)pylint "avakas"
