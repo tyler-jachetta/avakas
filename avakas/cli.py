@@ -29,25 +29,30 @@ def git_rev(directory):
     return str(get_repo(directory).head.commit)[0:8]
 
 
-def add_metadata(project, **kwargs):
+def add_metadata(
+        project,
+        buildmeta=False,
+        prerelease=False,
+        prerelease_date=None, prerelease_prefix='', **kwargs):
     """
     Add metadata for set/bump actions
     """
+
     directory = kwargs['directory'][0]
 
     git_str = str(git_rev(directory))
-    if kwargs['buildmeta']:
+    if buildmeta:
         metadata = (git_str,)
         metadata += ci_build_meta()
         project.apply_metadata(*metadata)
 
     now = None
-    if kwargs['prerelease_date']:
+    if prerelease_date:
         time_fmt = "%Y%m%d%H%M%S"
         now = datetime.utcnow().strftime(time_fmt)
 
-    if kwargs['prerelease']:
-        project.make_prerelease(prefix=kwargs['prerelease_prefix'],
+    if prerelease:
+        project.make_prerelease(prefix=prerelease_prefix,
                                 build_date=now)
     return project
 
