@@ -9,7 +9,8 @@ from .errors import AvakasError
 
 def detect_project_flavor(**kwargs):
     """
-    Determines the project flavor for a given directory
+    Determines the project flavor for a given directory and returns
+    an initialized project
     """
 
     flavor = kwargs.get('flavor', 'auto')
